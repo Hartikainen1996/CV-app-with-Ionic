@@ -1,29 +1,77 @@
+<!-- Eemil Hartikainen 1800699 -->
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+  <!-- <ion-router-outlet></ion-router-outlet> -->
+  <ion-split-pane contentId="menu-content" when="xs" [disabled]="true">
+    <ion-menu
+      contentId="menu-content"
+      menuId="menu-content"
+      side="start"
+      type="overlay"
+    >
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-toggle>
+              <ion-button>
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+              </ion-button>
+            </ion-menu-toggle>
+          </ion-buttons>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+        <ion-list>
+          <!--Use a-routerlink to link pages to menu-->
+          <ion-menu-toggle>
+            <ion-item
+              [routerLink]="['/welcome/introduction']"
+              routerLinkActive="router-link-active"
+            >
+              <ion-icon name="home-outline" slot="start"></ion-icon>
+              <ion-label>Home</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item
+              [routerLink]="['/edskills/education']"
+              routerLinkActive="router-link-active"
+            >
+              <ion-icon name="book-outline" slot="start"></ion-icon>
+              <ion-label>My education & skills</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item
+              [routerLink]="['/work-experience']"
+              routerLinkActive="router-link-active"
+            >
+              <ion-icon name="construct-outline" slot="start"></ion-icon>
+              <ion-label>My work experience</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item
+              [routerLink]="['/contact']"
+              routerLinkActive="router-link-active"
+            >
+              <ion-icon name="call-outline" slot="start"></ion-icon>
+              <ion-label>Contact</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
       </ion-content>
+      <ion-footer>
+        <ion-menu-toggle>
+          <ion-button
+            color="danger"
+            (click)="authService.SignOut()"
+            expand="full"
+            >Sign out</ion-button
+          >
+        </ion-menu-toggle>
+      </ion-footer>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
