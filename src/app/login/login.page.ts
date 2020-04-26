@@ -1,4 +1,4 @@
-// Eemil Hartikainen12
+// Eemil Hartikainen
 // 1800699
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
